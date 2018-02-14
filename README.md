@@ -1,7 +1,25 @@
+# Solution
+ 
+ - Building docker image will execute the code
+ - Two output files generated are :
+ 
+	 1. ***/root/code/output*** - contains result for average total fields and total count
+	 2. ***/root/code/word_count.csv*** -  contains result for word count
+ - Command to see result
+	 1. cat /root/code/output
+	 2. cat /root/code/word_count.csv
+	 
+	### Assumptions
+	- considered all the .csv files as valid and comma separated
+	-	considerd all the csv file for processing ( csv files present both in archive directory and data directory). If we need some specific file the code can be very quickly and easily modified.
+	-	For word count problem, was not clear on the meaning of every value ( so have counted frequency of each word in csv, except word in header row)
+	-	Excluded header in while computing total count.
+  
+  
 # Instructions
 
-- Build this docker image
-- Run `bash` as the command with an iteractive tty to get into the image:
+> Build this docker image
+> Run `bash` as the command with an iteractive tty to get into the image:
 
 ```
 docker run --rm -it ${whatever-you-named-the-image} /bin/bash
