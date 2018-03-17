@@ -26,7 +26,7 @@ _sample output_
 ```
 5
 ```
-_command to generate the average number of fields_
+_shell command to generate the average number of fields_
 ```
 file_cnt=`find . -name '*.csv'|wc -l`;for file in `find . -name '*.csv'`;do cat $file|perl -pe 's/\r(?!\n)/\r\n/g'|head -n 1;done|perl -wnlp -e 's/\t/,/g;'|perl -pe 's/,/\n/g' |sort |uniq -c |awk '{$1=$1};1'|sed 's/ /|/1'|awk -F $'|' ' { t = $1; $1 = $2; $2 = t; print; } ' OFS=$','|sed 's/^M//g'|awk -F "\"*,\"*" '{print $2}'|awk '{s+=$1} END {print s}'|{ bc | tr -d '\n' ; echo ",$file_cnt"; }|awk -F $',' ' { printf("%.0f\n", $1/$2) } '
 ```
@@ -47,7 +47,7 @@ word,45
 ...
 ```
 
-_command to generate word count of CSV files excluding header_
+_shell command to generate word count of CSV files excluding header_
 ```
 echo "value,count" > wordcount.dat ; for file in `find . -name '*.csv'`;do cat $file|perl -pe 's/\r(?!\n)/\r\n/g'|tail -n +2;done|perl -wnlp -e 's/\t/,/g;'|perl -pe 's/,/\n/g' |sort |uniq -c |awk '{$1=$1};1'|sed 's/ /|/1'|awk -F $'|' ' { t = $1; $1 = $2; $2 = t; print; } ' OFS=$',' >> wordcount.dat
 ```
@@ -64,7 +64,7 @@ _sample output_
 1000000000
 ```
 
-_command to generate total number rows in all CSV files excluding header_
+_shell command to generate total number rows in all CSV files excluding header_
 
 ```
 for file in `find . -name '*.csv'`;do cat $file|perl -pe 's/\r(?!\n)/\r\n/g'|tail -n +2;done|wc -l
