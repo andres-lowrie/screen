@@ -1,0 +1,101 @@
+package com.iheartmedia
+import org.apache.spark.SparkConf
+import org.apache.spark.sql.DataFrame
+import org.apache.spark.SparkContext
+import org.apache.log4j.Logger
+import org.apache.log4j.Level
+
+import java.sql.Date
+import java.util.Date
+import java.util.Calendar
+import java.text.SimpleDateFormat
+import java.io.FileNotFoundException
+import java.io.IOException
+
+class ReadCSV {
+  val isServer = false;
+  var logger = Logger.getLogger(this.getClass())
+  val jobName = "Average Fields, Column count and word count -Anoop Cholayil"
+  var conf: SparkConf = null
+  var csvInPath = ""
+  if (isServer == true) {
+    System.setProperty("hadoop.home.dir", "/etc/hadoop/conf");
+    conf = new SparkConf().setAppName(jobName).set("spark.driver.allowMultipleContexts", "true")
+  } else {
+    System.setProperty("hadoop.home.dir", "C:\\winutils");
+    conf = new SparkConf().setMaster("local[2]").setAppName(jobName)
+  }
+
+  Logger.getRootLogger().setLevel(Level.OFF)
+  Logger.getLogger("org").setLevel(Level.OFF)
+  Logger.getLogger("akka").setLevel(Level.OFF)
+  val sc = new SparkContext(conf)
+  val sqlContext = new org.apache.spark.sql.SQLContext(sc)
+  val WriteObj = new WriteToDisk()
+
+  def getAvgColumn(): Double = {
+    import org.apache.hadoop.fs.{ FileSystem, Path }
+    val path = "C:\\ac\\TestData\\scala\\in\\"
+    val files = FileSystem.get(sc.hadoopConfiguration).listStatus(new Path(path))
+    var filepath = ""
+    var fileCount = 0
+    var headCount = 0
+    var totalRowCount: Long = 0
+    for (file <- files) {
+      fileCount += 1
+      if (!file.isDirectory()) {
+        filepath = file.getPath.toString().replaceFirst("file:/", "").replaceAll("/", "//")
+        if (filepath.contains(".csv")) {
+          var rawTextRDD = sc.textFile(filepath)
+          val headLine = rawTextRDD.take(1)
+          //println(headLine)
+          val str = headLine.mkString("")
+          val pipe = "\\|"
+          val comma = "\\,"
+          var delim = ""
+          for (c <- str) {
+            if (c == ',') {
+              delim = comma
+            } else if (c == '|') {
+              delim = pipe
+            }
+          }
+          val headArray = rawTextRDD.first().split(delim)
+          headCount += headArray.length
+          totalRowCount += rawTextRDD.count() - 1
+        }
+      }
+    }
+    println("\n Total head column ==> " + headCount + "\n Totla files ==> " + fileCount + "\n Avg number of Fields ==> " + Math.round(headCount / fileCount.toDouble * 100.0) / 100.0)
+    println("\n Number of row in all csv ==> " + totalRowCount)
+    (headCount / fileCount.toDouble)
+  }
+  def wordCount() {
+    try {
+      var textfile = sc.textFile("C:\\ac\\TestData\\inter2\\")
+      val words = textfile.flatMap(line => line.split(" "))
+      val counts = words.map(word => (word, 1)).reduceByKey { case (x, y) => x + y }
+      counts.saveAsTextFile("C:\\ac\\TestData\\inter\\wordCount")
+    } catch {
+      case ex: FileNotFoundException => {
+        println("Missing file exception")
+      }
+      case ex: IOException => {
+        println("IO Exception")
+      }
+    }
+  }
+
+}
+
+object ReadCSV {
+
+  def main(arg: Array[String]) {
+    println("Application Start Time ==> " + new SimpleDateFormat("MM/dd/yyyy HH:mm:ss").format(Calendar.getInstance().getTime()))
+    val readCSVObj = new ReadCSV()
+    var avgHeads = readCSVObj.getAvgColumn()
+    readCSVObj.wordCount()
+    println("Application End Time ==> " + new SimpleDateFormat("MM/dd/yyyy HH:mm:ss").format(Calendar.getInstance().getTime()))
+
+  }
+}
