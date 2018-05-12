@@ -17,6 +17,18 @@ totalLines=$(find /root/data -type f -name '*.csv' -exec cat {} + | wc -l)
 
 echo " Total Lines "${totalLines}
 
+find /root/data -name '*.csv' -exec awk -F ',' -v outTemp=${outTemp} '{for(w=1;w<=NF;w++) {gsub(/[ ,\t]*/,"",$w);arr[$w]+=1;}}END{for(key in arr){printf("%s,%s\n",key,arr[key])>>outTemp;}}' {} +
+
+echo "Value,Count" > $finalOut1
+
+sort -t "," -k 2,2nr $outTemp >> $finalOut1
+
+rm -f $outTemp
+
+head -10 $finalOut1 | cat -n
+
+echo "Method 2"
+
 tot_lines=0;
 
 for line in $(find /root/data -type f -name '*.csv'); do
@@ -28,24 +40,12 @@ for line in $(find /root/data -type f -name '*.csv'); do
 	awk -F ',' -v tempFile=${tempFile} '{for(w=1;w<=NF;w++) {gsub(/[ ,\t]*/,"",$w);arr[$w]+=1;}}END{for (key in arr) {print key"|"arr[key] >> tempFile}}' $line
 done
 
-echo " Total Lines from Loop ==> "$tot_lines
+echo " Total Lines ==> "$tot_lines
 
 awk -F '|' -v outTemp=${outTemp} '{ arr[$1]+=$2;}END{for (key in arr) {print key","arr[key] >> outTemp }}' $tempFile 
 
-echo "Value,Count" > $finalOut1
-sort -t "," -k 2,2nr $outTemp >> $finalOut1
-
-rm -f $outTemp
-
-head -10 $finalOut1 | cat -n
-
-echo "Method 2"
-
-#find . -name '*.csv' -exec awk -F ',' -v outTemp=${outTemp} '{for(w=1;w<=NF;w++) {gsub(/ */,"",$w);arr[$w]+=1;}}END{for(key in arr){printf("%s|%s",key,arr[key])>>outTemp;}}' {} +
-
-find /root/data -name '*.csv' -exec awk -F ',' -v outTemp=${outTemp} '{for(w=1;w<=NF;w++) {gsub(/[ ,\t]*/,"",$w);arr[$w]+=1;}}END{for(key in arr){printf("%s,%s\n",key,arr[key])>>outTemp;}}' {} +
-
 echo "Value,Count" > $finalOut2
+
 sort -t "," -k 2,2nr $outTemp >> $finalOut2
 
-head -10 $finalOut2 | cat -n
+head -10 $finalOut1 | cat -n
