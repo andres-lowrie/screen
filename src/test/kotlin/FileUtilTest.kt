@@ -9,10 +9,10 @@ class FileUtilTest {
 
     @Test
     fun findCsvFilesWithMixedPaths() {
-        val csvPaths = FileUtil().getCsvFiles("src/test/data")
-        assert(csvPaths.isNotEmpty())
-        assert(csvPaths.size == 3)
-        assert(csvPaths.all { f -> f.isFile })
-        assert(csvPaths.all { f -> f.absolutePath.endsWith(".csv") })
+        val csvFiles = FileUtil().getCsvFiles("src/test/data")
+        assert(csvFiles.isNotEmpty())
+        assert(csvFiles.size == 3)
+        assert(csvFiles.all { f -> f.isFile })
+        assert(csvFiles.all { f -> f.absolutePath.endsWith(".csv") })
     }
 }
