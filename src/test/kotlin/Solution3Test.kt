@@ -6,6 +6,6 @@ class Solution3Test {
     fun testTotalNumberOfRowsInCsvs() {
         val csvFiles = FileUtil().getCsvFiles("src/test/data")
         val numRows = Solution3().totalNumberOfRowsInCsvs(csvFiles)
-        assert(numRows == 13)
+        assert(numRows == 16L)
     }
 }
