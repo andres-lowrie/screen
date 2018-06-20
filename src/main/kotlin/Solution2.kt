@@ -4,6 +4,7 @@ class Solution2 {
     // Was unclear if I should count the header or not so I decided to count the headers.
     // Assuming that we will be dealing with a lot of large files so I'll process them
     // with parallel stream.
+    // Not sure if sorting was required but this could be changed to do that.
     fun wordCountOfAllCsvs(files: List<File>): Map<String, Int> {
         val result: MutableMap<String, Int> = LinkedHashMap()
         files.parallelStream().map { it -> wordCountOfCsv(it) }
