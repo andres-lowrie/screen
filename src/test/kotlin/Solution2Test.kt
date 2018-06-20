@@ -20,7 +20,6 @@ class Solution2Test {
 
         val csvFiles = FileUtil().getCsvFiles("src/test/data")
         val wordCounts = Solution2().wordCountOfAllCsvs(csvFiles)
-
         assert(expectedResult.keys
                 .map { k -> wordCounts[k] == expectedResult[k] }
                 .all { b -> b }
