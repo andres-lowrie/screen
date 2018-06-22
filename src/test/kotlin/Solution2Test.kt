@@ -1,3 +1,5 @@
+import com.rlperez.FileUtil
+import com.rlperez.Solution2
 import org.junit.Test
 
 class Solution2Test {

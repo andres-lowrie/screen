@@ -1,3 +1,5 @@
+package com.rlperez
+
 import java.io.File
 
 class Solution3 {
