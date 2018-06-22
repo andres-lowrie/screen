@@ -51,3 +51,28 @@ _sample output_
 ```
 1000000000
 ```
+
+# Executing Solution
+
+- Build this docker image
+- Run `bash` as the command with an iteractive tty to get into the image:
+
+```
+docker run --rm -it ${whatever-you-named-the-image} /bin/bash
+```
+
+Execute jar
+
+```
+java -jar screen-1.0-SNAPSHOT.jar data/
+```
+
+Solution 1 and 3 will be printed to the console. Solution 2 is written to file `solution2.csv`. The argument `data/` can be another data directory. 
+
+Notes: 
+
+I was unsure at the time I started working on this if I had a choice of language and made the executive decision to write it in Kotlin. Unfortunately 
+when I started I was working off of an assumption of JDK 8 being available which wasn't readily available without adding other apt-get sources in the Debian jessie 
+docker image so I upgraded it to the buster version. I'm hoping for correctness as I wrote the bare minimum amount of testing which if this was an application
+would be much more in depth. The Dockerfile currently clones the repo from my fork path which if it were to be an accepted merge it should be pointing to `andres-lowrie/screen
+`.
