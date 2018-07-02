@@ -107,9 +107,9 @@ public class FileUtil {
 
 	public static void main(String[] args) {
 
-		//String filePath = "/root/data";
-		Scanner input = new Scanner(System.in);
-		String filePath = input.next();
+		String filePath = "/root/data";
+		//Scanner input = new Scanner(System.in);
+		//String filePath = input.next();
 		List<String> fileLocations = new ArrayList<String>();
 		long noOfFiles = 0;
 		try {
