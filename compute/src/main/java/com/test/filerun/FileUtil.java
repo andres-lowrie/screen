@@ -39,12 +39,12 @@ public class FileUtil {
 				}
 				for (String word : nextRecord) {
 					if(word!=null && !word.trim().isEmpty()) {
-						Long currentCount = wordMap.get(word);
+						Long currentCount = wordMap.get(word.toLowerCase());
 						if (currentCount != null) {
 							currentCount++;
-							wordMap.put(word, currentCount);
+							wordMap.put(word.toLowerCase(), currentCount);
 						} else {
-							wordMap.put(word, new Long(1));
+							wordMap.put(word.toLowerCase(), new Long(1));
 						}
 					}
 				}
