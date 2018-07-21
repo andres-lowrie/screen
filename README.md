@@ -1,18 +1,21 @@
 # Instructions
 
-- Build this docker image
-- Run `bash` as the command with an iteractive tty to get into the image:
+Here are step by step instructions on how to specifically run my code.
 
 ```
-docker run --rm -it ${whatever-you-named-the-image} /bin/bash
+git clone https://github.com/csravelar/screen.git
+
+cd screen
+
+git checkout solution
+
+sudo docker build -t iheart .
+
+sudo docker run --rm -it iheart
 ```
 
-- The data is in the directory `/root/data` on said image
-- Create a Pull Request with your code for review
-
-> **You're free to use whatever language you want just as long as you include the instructions on how to run your code. (Bonus points if you modify the `Dockerfile` instead)**
->
-> Note that you **do not** have to use a _Big Data_ stack like Hadoop or Spark. If you do use those, provide either a [docker-swarm](https://docs.docker.com/compose/) or [kubernetes](https://kubernetes.io/) configuration file(s) in your Pull Request that will setup the cluster or else we won't be able to run the code
+Once you are in, navigate to the solutions directory.
+The stdin output will be called stdout.txt and the occurence cvs file will be called result.csv
 
 
 # Questions
