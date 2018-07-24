@@ -1,9 +1,15 @@
-FROM debian:jessie
+FROM python:alpine3.7
 
-RUN apt-get update && apt-get install -y \
-    git \
-    curl \
-    jq
+WORKDIR /app
 
-WORKDIR /root
-RUN ["/bin/bash", "-c", "mkdir data && cd data && while read i; do git clone $i; done < <(curl -s https://api.github.com/orgs/datasets/repos?per_page=100 | jq -r '.[].clone_url')"]
+ADD load.sh /app/load.sh
+ADD process.py /app/process.py
+
+RUN apk update --no-cache && \
+	apk add --update --no-cache git curl jq && \
+	chmod +x /app/load.sh && \
+ 	chmod +x /app/process.py
+
+ENV LOG_LEVEL INFO
+
+ENTRYPOINT /app/load.sh && python -m process
