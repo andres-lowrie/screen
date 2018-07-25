@@ -8,5 +8,3 @@ repos=$(curl -s https://api.github.com/orgs/datasets/repos?per_page=$PER_PAGE | 
 for repo in $repos; do
 	git clone $repo;
 done
-
-find . -type f -name '*.csv' > csv_files.txt
