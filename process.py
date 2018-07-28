@@ -20,7 +20,7 @@ def read_csv_file(filename):
             result = chardet.detect(rawdata)
             logger.info(f'encoding: {result["encoding"]}, confidence: {result["confidence"]}, language {result["language"]}')
             data = rawdata.decode(encoding=result['encoding'])
-            reader = csv.reader(data.splitlines())
+            reader = csv.reader(data.splitlines(), dialect='unix')
         except Exception as ex:
             logger.error(f'filename: {filename} - error: {ex}')
 
@@ -30,7 +30,7 @@ def read_csv_file(filename):
 def write_word_count_csv(counter, filename='word_count.csv'):
     pathlib.Path(os.path.abspath(OUTPUT_DIR)).mkdir(parents=True, exist_ok=True)
     with open(os.path.abspath(f'{OUTPUT_DIR}/{filename}'), 'w') as word_count_file:
-        writer = csv.writer(word_count_file, dialect='unix')
+        writer = csv.writer(word_count_file, dialect='unix',)
         writer.writerow(('word', 'count'))
         writer.writerows(counter.items())
 
