@@ -30,7 +30,7 @@ def read_csv_file(filename):
 def write_word_count_csv(counter, filename='word_count.csv'):
     pathlib.Path(os.path.abspath(OUTPUT_DIR)).mkdir(parents=True, exist_ok=True)
     with open(os.path.abspath(f'{OUTPUT_DIR}/{filename}'), 'w') as word_count_file:
-        writer = csv.writer(word_count_file, dialect='unix',)
+        writer = csv.writer(word_count_file, dialect='unix', quoting=csv.QUOTE_MINIMAL)
         writer.writerow(('word', 'count'))
         writer.writerows(counter.items())
 
@@ -55,6 +55,7 @@ def process():
 
 if __name__ == "__main__":
     average_fields, total_rows, word_count = process()
+    os.makedirs(os.path.dirname(f'{OUTPUT_DIR}/'), exist_ok=True)
     # what's the average number of fields across all the .csv files?
     open(os.path.abspath(f'{OUTPUT_DIR}/average_fields'), 'w').write(str(average_fields))
 
