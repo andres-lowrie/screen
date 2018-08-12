@@ -1,0 +1,4 @@
+Run the following two commands:
+
+docker build -t iheart-screen .
+docker run iheart-screen
