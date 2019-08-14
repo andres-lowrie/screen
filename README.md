@@ -1,6 +1,11 @@
 # Instructions
 
 - Build this docker image
+
+```
+docker build -t ${whatever-you-named-the-image} .
+```
+
 - Run `bash` as the command with an iteractive tty to get into the image:
 
 ```
@@ -8,12 +13,28 @@ docker run --rm -it ${whatever-you-named-the-image} /bin/bash
 ```
 
 - The data is in the directory `/root/data` on said image
-- Create a Pull Request with your code for review
 
-> **You're free to use whatever language you want just as long as you include the instructions on how to run your code. (Bonus points if you modify the `Dockerfile` instead)**
->
-> Note that you **do not** have to use a _Big Data_ stack like Hadoop or Spark. If you do use those, provide either a [docker-swarm](https://docs.docker.com/compose/) or [kubernetes](https://kubernetes.io/) configuration file(s) in your Pull Request that will setup the cluster or else we won't be able to run the code
+- To run tests on your local machene
 
+```
+python3.7 -m venv venv
+```
+
+```
+. ./venv/bin/activate
+```
+
+```
+pip install --upgrade pip
+```
+
+```
+pip install -r requirements-dev.txt
+```
+
+```
+python -m pytest tests --cov=app --cov-config=.coveragerc
+```
 
 # Questions
 
@@ -52,11 +73,4 @@ _sample output_
 1000000000
 ```
 
-python3.6 -m venv venv
-. ./venv/bin/activate
-pip install --upgrade pip
-pip install -r requirements.txt
-pip install -r requirements-dev.txt
-
-python -m pytest tests --cov=app --cov-config=.coveragerc
 
