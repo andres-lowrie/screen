@@ -13,7 +13,7 @@ class Scanner:
         """Constructor.
         """
         self.input_dir = input_dir 
-        self.dirs = []
+        self._files = []
 
     def get_dir(self):
         """Name of directory to scan.
@@ -26,9 +26,9 @@ class Scanner:
         for root, _, files in os.walk(self.input_dir):
             for name in files:
                 if name.endswith(EXTENTION):
-                    self.dirs.append(os.path.join(root, name))
+                    self._files.append(os.path.join(root, name))
 
     def files(self):
         """Get names of files.
         """
-        return self.dirs
+        return self._files
