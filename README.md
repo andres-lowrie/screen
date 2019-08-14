@@ -14,6 +14,12 @@ docker run --rm -it ${whatever-you-named-the-image} /bin/bash
 
 - The data is in the directory `/root/data` on said image
 
+- To run the app
+
+```
+python -m app --input data --output words_count.csv
+```
+
 - To run tests on your local machene
 
 ```
