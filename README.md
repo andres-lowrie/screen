@@ -51,3 +51,12 @@ _sample output_
 ```
 1000000000
 ```
+
+python3.6 -m venv venv
+. ./venv/bin/activate
+pip install --upgrade pip
+pip install -r requirements.txt
+pip install -r requirements-dev.txt
+
+python -m pytest tests --cov=app --cov-config=.coveragerc
+
