@@ -24,3 +24,43 @@ class TestParser(TestCase):
        parser.parse()
        self.assertEqual(5, parser.fields())
        self.assertEqual(3, parser.count())
+
+    def test_that_parser_gets_words(self):
+       parser = Parser(file_name=TEST_FILES[3])
+       parser.parse()
+       self.assertEqual(
+           ['USA', 'Ukraine', 'Mexico'],
+           parser.get_words()
+       )
+
+
+    def test_word_counter(self):
+       parser = Parser(file_name=TEST_FILES[3])
+       parser.parse()
+       self.assertEqual(
+           {'USA': 1, 'Ukraine': 1, 'Mexico': 1},
+           parser.get_word_count()
+       )
+
+    def test_word_counter_again(self):
+       parser = Parser(file_name=TEST_FILES[1])
+       parser.parse()
+       self.assertEqual(
+           {'2019-01-01': 1},
+           parser.get_word_count()
+       )
+
+    def test_that_parser_gets_words_again(self):
+       parser = Parser(file_name=TEST_FILES[1])
+       parser.parse()
+       self.assertEqual(
+           ['2019-01-01'],
+           parser.get_words()
+       )
+
+    def test_that_parser_can_scan_again(self):
+       """Test that parser can parse csv."""
+       parser = Parser(file_name=TEST_FILES[1])
+       parser.parse()
+       self.assertEqual(2, parser.fields())
+       self.assertEqual(1, parser.count())

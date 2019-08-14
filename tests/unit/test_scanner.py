@@ -7,7 +7,8 @@ TEST_FILES = [
     'test_data/2_csv/test2_csv.csv',
     'test_data/3_deep_csv/data/test3_csv.csv',
     'test_data/3_deep_csv/test_csv.csv',
-    'test_data/3_deep_csv/test2_csv.csv'
+    'test_data/3_deep_csv/test2_csv.csv',
+    'test_data/empty_csv/test_empty.csv'
 ]
 
 class TestScanner(TestCase):
@@ -37,3 +38,8 @@ class TestScanner(TestCase):
             sorted(TEST_FILES), 
             sorted(self.scanner.files())
         )
+
+    def test_file_count_method(self):
+        """Test that files count is correct."""
+        self.scanner.scan()
+        self.assertEqual(7, self.scanner.files_count())

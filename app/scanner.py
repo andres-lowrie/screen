@@ -32,3 +32,7 @@ class Scanner:
         """Get names of files.
         """
         return self._files
+
+    def files_count(self):
+        """Return count of scanned files."""
+        return len(self._files)
