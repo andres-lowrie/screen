@@ -1,0 +1,5 @@
+.coverage
+data-aggregator/data_aggregator.egg-info/
+data-aggregator/data_aggregator/__pycache__/
+data-aggregator/dist/
+data-aggregator/tests/__pycache__/

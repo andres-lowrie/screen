@@ -1,0 +1,10 @@
+RoomID,Floor,Use,Square Footage,Capacity,Price
+100,1,Retail,6598,55,6500
+101,1,Retail,1900,25,3000
+102,1,Retail,1850,25,3000
+103,1,Restroom,250,0,0
+104,1,Maintenance,150,0,0
+200,2,Studio,875,2,850
+201,2,Studio,734,2,850
+202,2,Studio,624,2,850
+203,2,Studio,624,2,850

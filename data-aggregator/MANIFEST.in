@@ -1,0 +1,7 @@
+include *.txt
+include *.md
+include *.rst
+recursive-include data_aggregator *.py
+recursive-include data_aggregator *.txt
+recursive-include data_aggregator *.csv
+recursive-include data_aggregator *.html
