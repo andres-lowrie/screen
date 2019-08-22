@@ -22,7 +22,7 @@ RUN python3.6 -m venv .env
 
 COPY data-aggregator src/
 
-RUN ["/bin/bash", "-c", "source .env/bin/activate && python src/setup.py install"]
+RUN ["/bin/bash", "-c", "cp src/config_sample.ini .appconfig.ini && source .env/bin/activate && python src/setup.py install"]
 
 # run app to store results in image filesystem layer
-RUN ["/bin/bash", "-c", "source .env/bin/activate && data-aggregator"]
+RUN ["/bin/bash", "-c", "source .env/bin/activate && data-aggregator -c .appconfig.ini"]

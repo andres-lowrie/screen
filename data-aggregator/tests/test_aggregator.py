@@ -3,10 +3,6 @@
 
 import pytest
 import os
-import sys
-from itertools import chain
-from random import shuffle
-import io
 from collections import defaultdict
 import logging
 
@@ -20,9 +16,12 @@ def get_logger():
     return logging.getLogger(__name__)
 
 
-def test_file_finder():
+@pytest.fixture(scope='module')
+def data_dir():
+    return os.path.join(os.path.dirname(__file__), 'data')
 
-    data_dir = os.path.join(os.path.dirname(__file__), 'data')
+
+def test_file_finder(data_dir):
 
     file_finder = FileMatchIterable(data_dir)
 
@@ -59,9 +58,7 @@ def quick_parse_csv(path, sep=','):
 
 
 
-def test_csv_aggregator():
-
-    data_dir = os.path.join(os.path.dirname(__file__), 'data')
+def test_csv_aggregator(data_dir):
 
     path1 = os.path.join(data_dir, 'file1.csv')
 
@@ -86,9 +83,7 @@ def test_csv_aggregator():
     assert set(value_count_list) == set(csv_parsed['my_count'].items())
 
 
-def test_stats_aggregator():
-
-    data_dir = os.path.join(os.path.dirname(__file__), 'data')
+def test_stats_aggregator(data_dir):
 
     path1 = os.path.join(data_dir, 'file1.csv')
 

@@ -1,6 +1,7 @@
 include *.txt
 include *.md
 include *.rst
+include *.ini
 recursive-include data_aggregator *.py
 recursive-include data_aggregator *.txt
 recursive-include data_aggregator *.csv
