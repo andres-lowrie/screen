@@ -7,11 +7,11 @@ import csv
 TARGET_CVS = 'my_dataset.csv'
 
 
-def get_list_of_cvs(folder: str = 'data', filename_extension: str = 'csv'):
+def get_list_of_csv(folder: str = 'data', filename_extension: str = 'csv') -> list:
     return sorted(pathlib.Path(folder).glob(f'**/*.{filename_extension}'))
 
 
-def get_lines(file_name) -> int:
+def get_lines(file_name: pathlib.Path) -> int:
     lines = 0
     if file_name:
         with file_name.open('r', encoding='utf-8', errors='ignore') as target_file:
@@ -22,15 +22,15 @@ def get_lines(file_name) -> int:
 
 if __name__ == '__main__':
     print("Task 1:")
-    list_of_cvs = get_list_of_cvs()
+    list_of_csv = get_list_of_csv()
     total_lines = 0
-    for item in list_of_cvs:
+    for item in list_of_csv:
         total_lines = total_lines + get_lines(item)
-    print(f" The average number of fields across all the .csv files: {total_lines // len(list_of_cvs)}")
+    print(f" The average number of fields across all the .csv files: {total_lines // len(list_of_csv)}")
 
     print("Task 2:")
     dict_list = {}
-    for cvs_file in list_of_cvs:
+    for cvs_file in list_of_csv:
         with cvs_file.open('r', encoding='utf-8', errors='ignore') as _data_cvs_file:
             reader = csv.reader(_data_cvs_file)
             for row in reader:
@@ -48,7 +48,7 @@ if __name__ == '__main__':
         writer.writerow(title_row)
         writer.writerows([[key, value] for key, value in dict_list.items()])
     target_cvs_file.close()
-    print(" The task is done! Check my_dataset.csv")
+    print(f" The task is done! Check {TARGET_CVS} file.")
 
     print("Task 3:")
-    print(f" The total number of rows for the all the .cvs files :{total_lines}")
+    print(f" The total number of rows for the all the .cvs files: {total_lines}")
