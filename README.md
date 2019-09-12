@@ -42,7 +42,7 @@ word,45
 ...
 ```
 
-## what's the total number or rows for the all the `.csv` files?
+## what's the total number of rows for the all the `.csv` files?
 
 output should be a simple number
 
