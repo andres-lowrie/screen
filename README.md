@@ -51,3 +51,24 @@ _sample output_
 ```
 1000000000
 ```
+
+# Answers
+
+## Q1
+
+During building the docker image using `docker build -t <DOCKER_IMAGE_NAME> .` the answer of this question would be printed.
+
+## Q2
+
+During building the docker image, the name of the CSV file in which all the values and their counts are stored, would be displayed.
+In order to get access to the output file, you can get access to a running container and find the output file using:
+
+- `docker run --rm -it <DOCKER_IMAGE_NAME> /bin/bash`
+
+Also, if you would like to pull the output file from your running container, you can run:
+
+- `docker cp <CONTAINER_ID>:/root/<OUTPUT_FILE>.csv /path/to/store/locally`
+
+## Q3
+
+During building the docker image, the answer of this question would be printed.
