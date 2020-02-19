@@ -1,3 +1,23 @@
+# Instructions on how to run the code
+
+Use the dockerfile to build the image containing all tools necessary.
+
+For question number one use: 
+
+	$python3 prog.py
+
+For question number two use:
+
+	$python3 prog2.py
+
+The output file will apear in the same directory and will be called Output.csv
+
+For question number three use:
+
+	$python3 prog3.py
+
+
+
 # Instructions
 
 - Build this docker image
