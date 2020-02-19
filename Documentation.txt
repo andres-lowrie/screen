@@ -1,0 +1,19 @@
+• Python3 (pandas) and Bash are the programming languages in use
+
+• Files (Programs) have to be in /root/data folder
+
+• IHeartMedia.sh file needs the permitions so run "$ chmod 744 IHeartMedia.sh"
+
+• IHeartMedia.sh will create a file called DOTcsvFiles.txt which contains the csv files.
+  - Then later it will excecute the python files and the output will be generated.
+
+• iheart_1.py code prints the averagenumber of fields across all the .csv file
+
+• iheart_2.py count of every value of every dataset and creates TotalCount.csv that contains the count of every value of every dataset. Value is the name of the .csv file path and value is the total values in the dataset (I'm not sure if I understod this question)
+
+• iheart_3.py prints the total number or rows for the all the .csv files.
+
+• If any clarification please reach out to me.
+ 
+
+ 
