@@ -2,7 +2,10 @@
 
 • Files (Programs) have to be in /root/data folder
 
-• IHeartMedia.sh file needs the permissions  so run "$ chmod 744 IHeartMedia.sh"
+• IHeartMedia.sh file needs the permissions to be executed so run: 
+  - "$ chmod 744 IHeartMedia.sh" 
+  and execute it by running: 
+  - "$ ./IHeartMedia.sh"
 
 • IHeartMedia.sh will create a file called DOTcsvFiles.txt which contains the csv files.
   - Then later it will execute the python files and the output will be generated.
