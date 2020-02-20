@@ -1,0 +1,21 @@
+Steps
+
+1. Create an empty directory on your machine and download the 'Dockerfile' to it
+
+2. Build a docker image using the following command. This will also run the code that generates the solution and will commit it to the image.
+        docker build -t iHeart:solution .
+
+3. Start a container and attach to it using the following command
+        docker run --rm -it iheart:solution /bin/bash
+
+4. You can use 'vi' editor to view the already generated solution in the following files
+            /root/avg_number_of_fields.txt
+            /root/value_WordCount.csv
+            /root/total_number_of_rows.txt
+
+        ex: vi /root/avg_number_of_fields.txt
+
+5. The code that generates the solution can be viewed in the following script
+            /root/solution.py
+
+Thanks!
