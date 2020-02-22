@@ -1,0 +1,24 @@
+Build Docker Container
+
+ docker build . -t screen:1
+
+Run Docker container in interactive mode
+
+ docker run --rm -it screen:1 /bin/bash
+
+This  will log you on the container at /root and will contain the following files/directories
+data  output  task1.py  task2.py  task3.py
+
+Run following commands:
+python3 task1.py 
+python3 task2.py
+python3 task3.py
+
+Note:
+task1.py will output the results to terminal ( Additionally saves to output folder as avgfields.csv)
+task3.py will output the results to terminal ( Additionally saves to output folder as output/Totalcount.csv ).
+task2.py will create an output file to output directory as output/wordcount.csv .
+
+vi output/Totalcount.csv
+vi output/avgfields.csv
+vi output/wordcount.csv
