@@ -36,6 +36,8 @@ for x in glob.glob(path, recursive=True):
               total+= len(df.index)
            except:
               print('Unknown Exception. Review file:'+x)
+    except:
+              print('Unknown Exception. Review file:'+x)
 
 print(total)
 with open('output/Totalcount.csv', 'w') as f:

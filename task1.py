@@ -43,6 +43,9 @@ for x in glob.glob(path, recursive=True):
               n+=1
             except:
               print('Unknown Exception. Review file:'+x)
+    except:
+              n+=1
+              print('Unknown Exception. Review file:'+x)
 
 # Check for division by 0. Uses Floor to get Int value.
 res =  0 if n==0 else math.floor(total/n)

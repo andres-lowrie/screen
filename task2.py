@@ -51,6 +51,8 @@ for x in glob.glob(path, recursive=True):
               updatecounts(df,x)
            except:
               print('Unknown Exception. Review file:'+x)
+    except:
+              print('Unknown Exception. Review file:'+x)
 
 # Write output to disk
 with codecs.open('output/wordcount.csv', 'w','utf-8') as f:
