@@ -1,0 +1,12 @@
+The dockerfile has been modified to install python3.6.4 on the debian base image.
+
+Follow the following steps please:
+1. docker build -t <image_name>
+2. docker run -it <image_name>
+3. docker cp /host_path/ihearmedia_enigneer.py <container_id>:/root/
+4. python3 iheartmedia_engineer.py
+
+Answer to first and third question will print out.
+Answer to second question will have a dataset (.csv file) printed out at /root directory in the container.
+
+
