@@ -4,7 +4,7 @@
 - You can run `bash` as the command with an interactive tty to get into the image:
 
 ```
-docker run --rm -it ${whatever-you-named-the-image} /bin/bash
+docker run --rm -it ${whatever-you-named-the-image}
 ```
 
 - Setup a local database within the docker image.
