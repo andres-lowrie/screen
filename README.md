@@ -1,53 +1,54 @@
-# Instructions
+# Docker_Project
+Get gihub datasets and store in docker image
 
-- Build this docker image
-- You can run `bash` as the command with an interactive tty to get into the image:
 
-```
-docker run --rm -it ${whatever-you-named-the-image} /bin/bash
-```
 
-- Setup a local database within the docker image.
-- Load the csv files from the `data` directory into the database you created.
-- Answer the questions [below](README.md#Questions) and output the answers into an answer table(s).
-- Lastly, create a Pull Request with your code for review
 
-# Questions
+cd Desktop\DockerFiles
 
-## What's the average number of fields across all the tables you loaded?
 
-Output should be a simple number
+1.Run docker 
 
-_sample output_
+    docker build -t interview .
 
-```
-|Question|Answer|
-|--------|------|
-| 1      | 5    |
-```
+2.Enter Image
 
-## What is the word count of every value of every table
+    docker run -it interview /bin/bash
 
-Output should have fields `value` and `count` and one entry for every value found:
+3. Some prerequest need to run in docker image
+    
+    Install Libmariadb
 
-_sample output_
+        apt-get install libmariadb-dev
 
-```
-|     value     | count  |
-|---------------|--------|
-|   some value  | 435    |
-| another value | 234    |
-|     word      | 45     |
-```
+	    press Y and enter
 
-## What's the total number or rows for the all the tables?
+    Install mysqlclient python packages
 
-Output should be a simple number
+       pip3 install mysqlclient
 
-_sample output_
+4. Update mysql's root password
 
-```
-|Question|Answer|
-|--------|------|
-| 3      | 1000 |
-```
+        service mysql start
+        mysql
+
+        use mysql;
+
+        update user set password=PASSWORD("1234") where User='root';
+        update user set plugin='mysql_native_password' where User='root';
+
+        flush privileges;
+
+        CREATE DATABASE TEST;
+
+        exit;
+
+	(mysql -u root -p1234)
+
+5. Run the python file to load
+
+        python3 Load_CSV_to_DB.py
+
+6. Run the python file to get the answer
+
+       python3 exercise_answer.py
